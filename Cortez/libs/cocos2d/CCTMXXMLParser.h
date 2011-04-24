@@ -181,6 +181,9 @@ enum {
 	
 	// tile properties
 	NSMutableDictionary *tileProperties_;
+    
+    // last guid in case we're tracking through multiple presaved tilesets
+    int iLastGUID;
 }
 
 @property (nonatomic,readwrite,assign) int orientation;
