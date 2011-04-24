@@ -10,7 +10,8 @@
 
 #import "AppDelegate.h"
 #import "GameConfig.h"
-#import "HelloWorldLayer.h"
+#import "MainStage.h"
+#import "GameEngine.h"
 #import "RootViewController.h"
 
 @implementation AppDelegate
@@ -63,7 +64,7 @@
 	//
 	EAGLView *glView = [EAGLView viewWithFrame:[window bounds]
 								   pixelFormat:kEAGLColorFormatRGB565	// kEAGLColorFormatRGBA8
-								   depthFormat:0						// GL_DEPTH_COMPONENT16_OES
+								   depthFormat:GL_DEPTH_COMPONENT16_OES						// GL_DEPTH_COMPONENT16_OES
 						];
 	
 	// attach the openglView to the director
@@ -108,9 +109,10 @@
 	
 	// Removes the startup flicker
 	[self removeStartupFlicker];
-	
+    
+    [[GameEngine sharedGameEngine] setupPlayer];
 	// Run the intro Scene
-	[[CCDirector sharedDirector] runWithScene: [HelloWorldLayer scene]];
+	[[CCDirector sharedDirector] runWithScene: [MainStage scene]];
 }
 
 
