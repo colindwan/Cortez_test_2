@@ -207,16 +207,31 @@
 		// If this is an external tileset then start parsing that
 		NSString *externalTilesetFilename = [attributeDict valueForKey:@"source"];
 		if (externalTilesetFilename) {
-				// Tileset file will be relative to the map file. So we need to convert it to an absolute path
-				NSString *dir = [filename_ stringByDeletingLastPathComponent];	// Directory of map file
-				externalTilesetFilename = [dir stringByAppendingPathComponent:externalTilesetFilename];	// Append path to tileset file
-				
-				[self parseXMLFile:externalTilesetFilename];
+            // Tileset file will be relative to the map file. So we need to convert it to an absolute path
+            NSString *dir = [filename_ stringByDeletingLastPathComponent];	// Directory of map file
+            externalTilesetFilename = [dir stringByAppendingPathComponent:externalTilesetFilename];	// Append path to tileset file
+            if ([attributeDict valueForKey:@"firstgid"]) {
+                iLastGUID = [[attributeDict valueForKey:@"firstgid"] intValue];
+            }
+            else {
+                iLastGUID = 0;  // this may be excessive and error prone
+            }
+            [self parseXMLFile:externalTilesetFilename];
 		} else {
 				
 			CCTMXTilesetInfo *tileset = [CCTMXTilesetInfo new];
 			tileset.name = [attributeDict valueForKey:@"name"];
-			tileset.firstGid = [[attributeDict valueForKey:@"firstgid"] intValue];
+            
+            // [CAD] - fix for loading from tilesets
+            if ([attributeDict valueForKey:@"firstgid"]) {
+                tileset.firstGid = [[attributeDict valueForKey:@"firstgid"] intValue];
+            } else if (iLastGUID > 0) {
+                tileset.firstGid = iLastGUID;
+            } else {
+                tileset.firstGid = 1;
+            }
+            
+			//tileset.firstGid = [[attributeDict valueForKey:@"firstgid"] intValue];
 			tileset.spacing = [[attributeDict valueForKey:@"spacing"] intValue];
 			tileset.margin = [[attributeDict valueForKey:@"margin"] intValue];
 			CGSize s;
