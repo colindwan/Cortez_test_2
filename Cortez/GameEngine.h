@@ -15,13 +15,21 @@
     CCSpriteFrameCache *animCache;
 
     Character *player;
+
+    bool bLock;
+    CCNode *priorityNode;
 }
 
 +(GameEngine *) sharedGameEngine;
 
 @property (nonatomic, retain) CCSpriteFrameCache *animCache;
 @property (nonatomic, retain) Character *player;
+@property (nonatomic, retain) CCNode *priorityNode;
+@property (nonatomic, readonly) bool bLock;
 
 - (void)setupPlayer;
+
+- (bool)lockNode:(CCNode *)target;
+- (void)unlockNode:(CCNode *)target;
 
 @end

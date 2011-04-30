@@ -16,6 +16,7 @@
 #import "PathPoint.h"
 #import "GameEngine.h"
 #import "Character.h"
+#import "ConversationOverlay.h"
 
 // HelloWorldLayer implementation
 @implementation MainStage
@@ -137,6 +138,9 @@
         myFileName = [[NSString alloc] initWithFormat:@"room1.tmx"];
         
         [self schedule:@selector(repositionPlayerZ:)];
+        
+        //ConversationOverlay *overlay = [[ConversationOverlay alloc] init];
+        //[self addChild:overlay z:100 tag:CONVO_TAG];
     }
 	return self;
 }
@@ -245,6 +249,9 @@
 - (BOOL)ccTouchBegan:(UITouch *)touch 
            withEvent:(UIEvent *)event
 {
+    if ([[GameEngine sharedGameEngine] bLock]) {
+        return NO;
+    }
     return YES;
 }
 
@@ -253,16 +260,18 @@
 {
     // Get our touch information - where did we poke, how far is it, etc?
     CGPoint location = [self convertTouchToNodeSpace:touch];
+    bool bEngageNPC = false;
+    CGPoint temp = [self pointInCharacter:location];
+    if (!CGPointEqualToPoint(temp, CGPointZero)) {
+        location = temp;
+        bEngageNPC = true;
+    }    
     
-    // [TODO] - Test for clicking off screen
-
     // Figure out if we need to move the screen around
     CCNode *node = self;
     CGSize mapSize = map.contentSize;
     CGSize tileSize;
-        
-    //[self pointInTrigger:location];
-    
+            
     // Get the tile info that we're clicking on
     CCTMXLayer *layer = [map layerNamed:@"obstacles"];
     tileSize = [map tileSize];
@@ -330,6 +339,9 @@
             lastPoint = temp;
         }
         seq = [CCSequence actions:seq, [CCCallFunc actionWithTarget:self selector:@selector(pointInTrigger)], nil];
+        if (bEngageNPC) {
+            seq = [CCSequence actions:seq, [CCCallFunc actionWithTarget:self selector:@selector(startConvo)], nil];
+        }
         [mainChar.mySprite runAction:seq];
         [mainChar.mySprite runAction:animSeq];
         [path removeAllObjects];
@@ -339,6 +351,9 @@
     else
     {
         id seq = [CCSequence actions:[CCMoveTo actionWithDuration:time position:location], [CCCallFunc actionWithTarget:self selector:@selector(pointInTrigger)], nil];
+        if (bEngageNPC) {
+            seq = [CCSequence actions:seq, [CCCallFunc actionWithTarget:self selector:@selector(startConvo)], nil];
+        }
         [mainChar.mySprite runAction:seq];
     }
     
@@ -453,6 +468,43 @@
         return true;
     }
     return false;
+}
+
+#pragma mark - Character interaction
+
+- (CGPoint)pointInCharacter:(CGPoint)p0
+{
+//    CGPoint p0 = mainChar.mySprite.position;
+    for (int i = 0; i < [characters count]; i++)
+    {
+        Character *tempChar = [characters objectAtIndex:i];
+        CGRect rect = [[tempChar mySprite] boundingBox];
+        if (p0.x < rect.origin.x || p0.y < rect.origin.y || p0.x > rect.origin.x+rect.size.width || p0.y > rect.origin.y+rect.size.height) {
+            continue;
+        }
+        CGPoint newPoint;
+        // If we clicked on one, lock in our destination to stand right next to the character
+        // [TODO] - need to check if this position might be in a wall.  For now, don't place an NPC directly against a wall :)
+        if (mainChar.mySprite.position.x < rect.origin.x)
+            newPoint = ccp(rect.origin.x - rect.size.width*.5, rect.origin.y);
+        else
+            newPoint = ccp(rect.origin.x + rect.size.width*1.5, rect.origin.y);
+        return newPoint;
+
+    }
+    return CGPointZero;
+}
+
+- (void)startConvo
+{
+    // [TODO] - set up convo based on who I clicked on
+    ConversationOverlay *overlay = [[ConversationOverlay alloc] init];
+    [self addChild:overlay z:100 tag:CONVO_TAG];
+}
+
+- (void)cleanupConvo
+{
+    [self removeChildByTag:CONVO_TAG cleanup:YES];
 }
 
 @end

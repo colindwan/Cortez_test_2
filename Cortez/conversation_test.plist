@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>first_convo</key>
+	<dict>
+		<key>0</key>
+		<dict>
+			<key>greeting</key>
+			<string>Hey there, nice to meet you!</string>
+			<key>nice_response</key>
+			<dict>
+				<key>text</key>
+				<string>Thanks, you&apos;re looking sharp today.</string>
+				<key>leads_to</key>
+				<string>11</string>
+			</dict>
+			<key>mean_response</key>
+			<dict>
+				<key>text</key>
+				<string>Who asked you?</string>
+				<key>leads_to</key>
+				<string>12</string>
+			</dict>
+			<key>inquiry_response</key>
+			<dict>
+				<key>text</key>
+				<string>Thanks, what are the rumors around town?</string>
+				<key>leads_to</key>
+				<string>13</string>
+			</dict>
+		</dict>
+		<key>11</key>
+		<dict>
+			<key>greeting</key>
+			<string>Why thank you!  I picked this outfit out myself</string>
+			<key>nice_response</key>
+			<dict>
+				<key>text</key>
+				<string>And it shows!  Have a nice day!</string>
+				<key>leads_to</key>
+				<string>111</string>
+			</dict>
+			<key>mean_response</key>
+			<dict>
+				<key>text</key>
+				<string>Really, in the dark?</string>
+				<key>leads_to</key>
+				<string>12</string>
+			</dict>
+			<key>inquiry_response</key>
+			<dict>
+				<key>text</key>
+				<string>Very cool.  Where might I find more info?</string>
+				<key>leads_to</key>
+				<string>13</string>
+			</dict>
+		</dict>
+		<key>12</key>
+		<dict>
+			<key>greeting</key>
+			<string>Well up yours!</string>
+			<key>action</key>
+			<string>exit</string>
+		</dict>
+		<key>13</key>
+		<dict>
+			<key>greeting</key>
+			<string>Sorry, fresh out of info.</string>
+			<key>action</key>
+			<string>exit</string>
+		</dict>
+		<key>111</key>
+		<dict>
+			<key>greeting</key>
+			<string>You bet, want to start over again?</string>
+			<key>nice_response</key>
+			<dict>
+				<key>text</key>
+				<string>Yes please</string>
+				<key>leads_to</key>
+				<string>0</string>
+			</dict>
+			<key>mean_response</key>
+			<dict>
+				<key>text</key>
+				<string>Over my dead body</string>
+				<key>leads_to</key>
+				<string>12</string>
+			</dict>
+		</dict>
+	</dict>
+</dict>
+</plist>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" width="20" height="9" tilewidth="40" tileheight="40">
+ <tileset firstgid="1" source="grass.tsx"/>
+ <tileset firstgid="19" source="wood.tsx"/>
+ <tileset firstgid="28" name="tool_icons" tilewidth="40" tileheight="40">
+  <image source="Tool Tiles/tool_icons.png" width="128" height="64"/>
+ </tileset>
+ <layer name="ground" width="20" height="9">
+  <data encoding="base64" compression="zlib">
+   eJzjYmBg4BrFo3iYYAD0pwcJ
+  </data>
+ </layer>
+ <layer name="obstacles" width="20" height="9">
+  <data encoding="base64" compression="zlib">
+   eJxjYKAfEEXD1DAPG5saYDC6j9rhNxwBAN3/ARI=
+  </data>
+ </layer>
+ <objectgroup name="triggers" width="20" height="9">
+  <object name="right" type="box" x="305" y="66" width="119" height="157">
+   <properties>
+    <property name="prop1" value="room2.tmx"/>
+   </properties>
+  </object>
+  <object name="start (new game)" type="start" x="31" y="163" width="108" height="26"/>
+  <object name="start (room2)" type="start" x="186" y="131" width="82" height="25">
+   <properties>
+    <property name="fromMap" value="room2.tmx"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="tools" width="20" height="9">
+  <object type="generator" gid="28" x="329" y="142"/>
+  <object type="generator" gid="28" x="306" y="295"/>
+  <object type="generator" gid="28" x="221" y="183"/>
+ </objectgroup>
+</map>

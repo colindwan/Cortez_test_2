@@ -13,6 +13,7 @@
 #import "MainStage.h"
 #import "GameEngine.h"
 #import "RootViewController.h"
+#import "ConversationOverlay.h"
 
 @implementation AppDelegate
 

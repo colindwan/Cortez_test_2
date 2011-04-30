@@ -11,8 +11,7 @@
 
 @implementation GameEngine
 
-//@synthesize iBlah, player, playerAnimCache, spriteBatch, animCache;
-@synthesize animCache, player;
+@synthesize animCache, player, priorityNode, bLock;
 
 static GameEngine* _sharedGameEngine=nil;
 
@@ -42,6 +41,25 @@ static GameEngine* _sharedGameEngine=nil;
 {
     animCache = [CCSpriteFrameCache sharedSpriteFrameCache];
     player = [[Character alloc] init];
+}
+
+- (bool)lockNode:(CCNode *)target
+{
+    if (bLock)
+        return false;
+    bLock = true;
+    priorityNode = target;
+    return true;
+}
+
+- (void)unlockNode:(CCNode *)target
+{
+    if (bLock) {
+        if (target == priorityNode) {
+            bLock = false;
+            priorityNode = nil;
+        }
+    }
 }
 
 @end

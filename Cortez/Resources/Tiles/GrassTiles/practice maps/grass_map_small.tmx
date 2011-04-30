@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" width="100" height="100" tilewidth="40" tileheight="40">
+ <tileset firstgid="1" name="grass_map" tilewidth="40" tileheight="40">
+  <image source="grass_map.png" width="256" height="256"/>
+  <tile id="0">
+   <properties>
+    <property name="walkable" value="-1"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="walkable" value="-1"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="walkable" value="-1"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="walkable" value="-1"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="walkable" value="-1"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="walkable" value="-1"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="walkable" value="-1"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="walkable" value="-1"/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="walkable" value="-1"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="walkable" value="-1"/>
+   </properties>
+  </tile>
+  <tile id="12">
+   <properties>
+    <property name="walkable" value="-1"/>
+   </properties>
+  </tile>
+  <tile id="18">
+   <properties>
+    <property name="walkable" value="-1"/>
+   </properties>
+  </tile>
+  <tile id="24">
+   <properties>
+    <property name="walkable" value="-1"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Tile Layer 1" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt3TtygzAUQFFaaFlA9r/LpEihaMTHAes9rFOcAeNG0R2QB3vCOk3T14/1d1tai23rfd5jrbatY3rENdnrQ98mpVYv9BiR61Ue1vM89ubb592YHmdFjxUAAAAAAACA55s39stj88Z79OsxF1s94nuUx/TQY1Tz1J5z16u4Hnv7euTqUe8T34NcPbQBAAAAAMhr67va6HEB1PZ+WxI9thHt/caEfG3IQRMAAAAAoMW9wzzK++vutcd3aNEmvk1rf+/YaJaOLer5PnrNe3u0XmuQky45jNqh1zqhhx5PlLXHyKKbjHouZO2BJvCqZep/nlg7cjXRI1eXT+nR45nPvXpkb3L0vO1Pev72U3ocdXr3GOrr1Zlz5T/n09keUc225rv3c+mX6W+To7m+ut5k/q62nvOIa1PZ4Wiur7Sov6vd+j/iWXq01o7o8W21u9Iis6O1PNMc3/UZLNP58GqrTD3uaJDt+pTR0lAfv7NL9N97xtY1K1rEfa7I+S9fR4+p1WKvyZlOZ35zlcUI54R143qL6DE8kXm77hsCBafD
+  </data>
+ </layer>
+</map>

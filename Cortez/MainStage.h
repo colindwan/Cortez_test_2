@@ -27,9 +27,12 @@
     NSMutableArray *characters;
     
     Character *mainChar;
+    
+    int iState;
 }
 
 #define MAP_TAG     1
+#define CONVO_TAG   2
 
 // returns a CCScene that contains the HelloWorldLayer as the only child
 +(CCScene *) scene;
@@ -49,4 +52,7 @@
 
 // Triggers
 - (bool)pointInTrigger;
+- (CGPoint)pointInCharacter:(CGPoint)p0;
+
+- (void)cleanupConvo;
 @end
