@@ -50,6 +50,8 @@
     
 	// add layer as a child to scene
 	[scene addChild: layer];
+    
+    NSLog(@"Shenanigans");
 	
 	// return the scene
 	return scene;
